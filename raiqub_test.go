@@ -16,11 +16,29 @@
 
 package dot
 
-// A PredicateStringFunc represents a function that defines a criteria and
-// determines whether specified string meets that criteria.
-type PredicateStringFunc func(string) bool
+import (
+	"testing"
+)
 
-// TrueForAll always returns true, regardless specified string.
-func TrueForAll(string) bool {
-	return true
+func TestTrueForAll(t *testing.T) {
+	samples := []string{
+		"YQcWKe9b",
+		"D08tbfRG",
+		"7iaTwmh7",
+		"k+oDBoWAiFOxD7pknX2kxDvQ+OX6HqwW0uqqvSVWRtU=",
+	}
+
+	predicates := make([]PredicateStringFunc, 0)
+
+	predicates = append(predicates, TrueForAll)
+	predicates = append(predicates, TrueForAll)
+	predicates = append(predicates, TrueForAll)
+
+	for _, s := range samples {
+		for _, p := range predicates {
+			if !p(s) {
+				t.Fatalf("Error testing '%s' input", s)
+			}
+		}
+	}
 }

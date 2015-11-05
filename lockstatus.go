@@ -16,6 +16,7 @@
 
 package dot
 
+// A LockStatus represents the lock status of an object.
 type LockStatus int
 
 const (

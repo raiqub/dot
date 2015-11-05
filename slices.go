@@ -21,46 +21,51 @@ import "strings"
 // A StringSlice represents an array of string.
 type StringSlice []string
 
-// IndexOf looks for specified string into current slice.
-func (s StringSlice) IndexOf(str string) int {
-	for i, v := range s {
-		if str == v {
-			return i
+// IndexOf looks for specified string into current slice, and optionally ignores
+// letter casing.
+func (s StringSlice) IndexOf(str string, ignoreCase bool) int {
+	if ignoreCase {
+		str = strings.ToLower(str)
+		for i, v := range s {
+			if str == strings.ToLower(v) {
+				return i
+			}
 		}
-	}
 
-	return -1
-}
-
-// IndexOfIgnoreCase looks for specified string, disregarding letter casing,
-// into current slice.
-func (s StringSlice) IndexOfIgnoreCase(str string) int {
-	str = strings.ToLower(str)
-	for i, v := range s {
-		if str == strings.ToLower(v) {
-			return i
+		return -1
+	} else { // ---------------------------
+		for i, v := range s {
+			if str == v {
+				return i
+			}
 		}
-	}
 
-	return -1
+		return -1
+	}
 }
 
 // Exists determines whether specified string exists into current slice.
-func (s StringSlice) Exists(str string) bool {
-	return s.IndexOf(str) != -1
+func (s StringSlice) Exists(str string, ignoreCase bool) bool {
+	return s.IndexOf(str, ignoreCase) != -1
 }
 
-// ExistsIgnoreCase determines whether specified string exists into current
-// slice (ignores letter casing).
-func (s StringSlice) ExistsIgnoreCase(str string) bool {
-	return s.IndexOfIgnoreCase(str) != -1
-}
-
-//ExistsAllIgnoreCase determine whether all specified strings exists into
-// current slice (ignores letter casing).
-func (s StringSlice) ExistsAllIgnoreCase(str []string) bool {
+//ExistsAll determine whether all specified strings exists into
+// current slice.
+func (s StringSlice) ExistsAll(str []string, ignoreCase bool) bool {
 	for _, v := range str {
-		if !s.ExistsIgnoreCase(v) {
+		if !s.Exists(v, ignoreCase) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// TrueForAll tests whether every element of current slice matches the
+// conditions specified by predicate.
+func (s StringSlice) TrueForAll(pred PredicateStringFunc) bool {
+	for _, v := range s {
+		if !pred(v) {
 			return false
 		}
 	}
