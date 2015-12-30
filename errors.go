@@ -40,3 +40,13 @@ func (e InvalidKeyError) Error() string {
 		"Could not get the '%s' key because it does not exist or it is expired",
 		string(e))
 }
+
+// A NotSupportedError represents an error when a method from interface
+// derivation is not supported.
+type NotSupportedError string
+
+// Error returns string representation of current instance error.
+func (e NotSupportedError) Error() string {
+	return fmt.Sprintf(
+		"Current implementation does not support '%s'", string(e))
+}
