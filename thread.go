@@ -33,6 +33,4 @@ func WaitFunc(interval, timeout time.Duration, f func() bool) bool {
 			return false
 		}
 	}
-
-	return false
 }

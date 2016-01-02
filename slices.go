@@ -33,15 +33,15 @@ func (s StringSlice) IndexOf(str string, ignoreCase bool) int {
 		}
 
 		return -1
-	} else { // ---------------------------
-		for i, v := range s {
-			if str == v {
-				return i
-			}
-		}
-
-		return -1
 	}
+
+	for i, v := range s {
+		if str == v {
+			return i
+		}
+	}
+
+	return -1
 }
 
 // Exists determines whether specified string exists into current slice.

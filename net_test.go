@@ -23,17 +23,17 @@ import (
 )
 
 const (
-	LISTENER_LAUNCH_DELAY = time.Millisecond * 10
-	LISTENER_SERVER_ADDR  = ":64080"
-	LISTENER_SERVER_NET   = "tcp"
-	WAIT_TIMEOUT          = time.Millisecond * 250
+	ListenerLaunchDelay = time.Millisecond * 10
+	ListenerServerAddr  = ":64080"
+	ListenerServerNet   = "tcp"
+	WaitTimeout         = time.Millisecond * 250
 )
 
 func TestWaitPeer(t *testing.T) {
 	go func() {
-		time.Sleep(LISTENER_LAUNCH_DELAY)
+		time.Sleep(ListenerLaunchDelay)
 
-		l, err := net.Listen(LISTENER_SERVER_NET, LISTENER_SERVER_ADDR)
+		l, err := net.Listen(ListenerServerNet, ListenerServerAddr)
 		if err != nil {
 			t.Skip("Failed to listen tcp/64080")
 		}
@@ -47,17 +47,17 @@ func TestWaitPeer(t *testing.T) {
 	}()
 
 	if !WaitPeerListening(
-		LISTENER_SERVER_NET,
-		LISTENER_SERVER_ADDR,
-		WAIT_TIMEOUT,
+		ListenerServerNet,
+		ListenerServerAddr,
+		WaitTimeout,
 	) {
 		t.Fatal("Could not wait to peer to be ready")
 	}
 
 	if WaitPeerListening(
-		LISTENER_SERVER_NET,
-		LISTENER_SERVER_ADDR,
-		WAIT_TIMEOUT,
+		ListenerServerNet,
+		ListenerServerAddr,
+		WaitTimeout,
 	) {
 		t.Fatal("The peer should not be ready")
 	}

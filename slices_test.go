@@ -22,11 +22,11 @@ import (
 )
 
 const (
-	SAMPLE_TEXT_MISSING = "Maecenas"
+	SampleTextMissing = "Maecenas"
 )
 
 var (
-	SAMPLE_TEXT_ARRAY = []string{
+	SampleTextArray = []string{
 		"Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing",
 		"elit.", "Sed", "tortor", "justo", "dui", "iaculis", "molestie.",
 		"Integer.",
@@ -34,9 +34,9 @@ var (
 )
 
 func TestStringSliceIndexOf(t *testing.T) {
-	sample := StringSlice(SAMPLE_TEXT_ARRAY)
+	sample := StringSlice(SampleTextArray)
 
-	for i, item := range SAMPLE_TEXT_ARRAY {
+	for i, item := range SampleTextArray {
 		if retIdx := sample.IndexOf(item, false); retIdx != i {
 			t.Errorf("Expected index '%d' but got '%d'", i, retIdx)
 		}
@@ -45,20 +45,20 @@ func TestStringSliceIndexOf(t *testing.T) {
 		}
 	}
 
-	if sample.IndexOf(SAMPLE_TEXT_MISSING, false) != -1 {
-		t.Errorf("The index of '%s' should be -1", SAMPLE_TEXT_MISSING)
+	if sample.IndexOf(SampleTextMissing, false) != -1 {
+		t.Errorf("The index of '%s' should be -1", SampleTextMissing)
 	}
 
-	missingUpper := strings.ToUpper(SAMPLE_TEXT_MISSING)
+	missingUpper := strings.ToUpper(SampleTextMissing)
 	if sample.IndexOf(missingUpper, true) != -1 {
 		t.Errorf("The index of '%s' should be -1", missingUpper)
 	}
 }
 
 func TestStringSliceExists(t *testing.T) {
-	sample := StringSlice(SAMPLE_TEXT_ARRAY)
+	sample := StringSlice(SampleTextArray)
 
-	for _, item := range SAMPLE_TEXT_ARRAY {
+	for _, item := range SampleTextArray {
 		if !sample.Exists(item, false) {
 			t.Errorf("The text '%s' should be found", item)
 		}
@@ -68,18 +68,18 @@ func TestStringSliceExists(t *testing.T) {
 		}
 	}
 
-	if sample.Exists(SAMPLE_TEXT_MISSING, false) {
-		t.Errorf("The text '%s' should not exists", SAMPLE_TEXT_MISSING)
+	if sample.Exists(SampleTextMissing, false) {
+		t.Errorf("The text '%s' should not exists", SampleTextMissing)
 	}
 
-	missingUpper := strings.ToUpper(SAMPLE_TEXT_MISSING)
+	missingUpper := strings.ToUpper(SampleTextMissing)
 	if sample.Exists(missingUpper, true) {
 		t.Errorf("The text '%s' should not exists", missingUpper)
 	}
 }
 
 func TestStringSliceExistsAll(t *testing.T) {
-	sample := StringSlice(SAMPLE_TEXT_ARRAY)
+	sample := StringSlice(SampleTextArray)
 	testSample := make([]string, 6)
 	copy(testSample, sample[2:8])
 
@@ -87,14 +87,14 @@ func TestStringSliceExistsAll(t *testing.T) {
 		t.Error("All elements of specified sample should exists")
 	}
 
-	testSample = append(testSample, SAMPLE_TEXT_MISSING)
+	testSample = append(testSample, SampleTextMissing)
 	if sample.ExistsAll(testSample, false) {
-		t.Errorf("The element '%s' should not exists", SAMPLE_TEXT_MISSING)
+		t.Errorf("The element '%s' should not exists", SampleTextMissing)
 	}
 }
 
 func TestStringSliceTrueForAll(t *testing.T) {
-	sample := StringSlice(SAMPLE_TEXT_ARRAY)
+	sample := StringSlice(SampleTextArray)
 
 	hasVowel := func(s string) bool {
 		return strings.IndexAny(s, "aeiou") >= 0

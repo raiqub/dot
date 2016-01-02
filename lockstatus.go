@@ -20,7 +20,12 @@ package dot
 type LockStatus int
 
 const (
+	// Unlocked indicates that an object is not locked.
 	Unlocked LockStatus = iota
+
+	// ReadLocked indicates that an object is locked for reading.
 	ReadLocked
+
+	// WriteLocked indicates that an object is locked for writing.
 	WriteLocked
 )

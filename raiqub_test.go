@@ -28,7 +28,7 @@ func TestTrueForAll(t *testing.T) {
 		"k+oDBoWAiFOxD7pknX2kxDvQ+OX6HqwW0uqqvSVWRtU=",
 	}
 
-	predicates := make([]PredicateStringFunc, 0)
+	var predicates []PredicateStringFunc
 
 	predicates = append(predicates, TrueForAll)
 	predicates = append(predicates, TrueForAll)
