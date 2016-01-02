@@ -5,7 +5,7 @@ implementation of very basic tasks.
 
 ## Status
 
-[![Build Status](https://travis-ci.org/raiqub/dot.svg?branch=master)](https://travis-ci.org/raiqub/dot) [![Coverage](http://gocover.io/_badge/github.com/raiqub/dot)](http://gocover.io/github.com/raiqub/dot) [![GoDoc](https://godoc.org/github.com/raiqub/dot?status.svg)](http://godoc.org/github.com/raiqub/dot)
+[![Build Status](https://travis-ci.org/raiqub/dot.svg?branch=master)](https://travis-ci.org/raiqub/dot) [![Coverage Status](https://coveralls.io/repos/raiqub/dot/badge.svg?branch=master&service=github)](https://coveralls.io/github/raiqub/dot?branch=master) [![GoDoc](https://godoc.org/github.com/raiqub/dot?status.svg)](http://godoc.org/github.com/raiqub/dot)
 
 ## Installation
 
