@@ -19,7 +19,7 @@ package dot_test
 import (
 	"fmt"
 
-	"github.com/raiqub/dot"
+	"gopkg.in/raiqub/dot.v1"
 )
 
 type Foo struct {

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/raiqub/dot"
+	"gopkg.in/raiqub/dot.v1"
 )
 
 func isValidUrl(url string) bool {

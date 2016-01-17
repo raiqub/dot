@@ -26,7 +26,13 @@ implementation of basic common tasks.
 To install raiqub/dot library run the following command:
 
 ~~~ bash
-go get github.com/raiqub/dot
+go get gopkg.in/raiqub/dot.v1
+~~~
+
+To import this package, add the following line to your code:
+
+~~~ bash
+import "gopkg.in/raiqub/dot.v1"
 ~~~
 
 ## Examples
