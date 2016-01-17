@@ -24,7 +24,7 @@ import (
 
 const (
 	ListenerLaunchDelay = time.Millisecond * 10
-	ListenerServerAddr  = ":64080"
+	ListenerServerAddr  = "localhost:64080"
 	ListenerServerNet   = "tcp"
 	WaitTimeout         = time.Millisecond * 250
 )
