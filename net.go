@@ -22,6 +22,10 @@ import (
 )
 
 // WaitPeerListening wait for specified peer be ready for new connections.
+//
+// 	if !WaitPeerListening("tcp", "localhost:8080", time.Millisecond * 500) {
+// 		fmt.Println("The peer is not ready")
+// 	}
 func WaitPeerListening(network, address string, timeout time.Duration) bool {
 	return WaitFunc(100*time.Millisecond, timeout, func() bool {
 		c, err := net.Dial(network, address)

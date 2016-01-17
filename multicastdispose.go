@@ -34,7 +34,7 @@ func (md *MulticastDispose) AddDisposable(d ...Disposable) {
 	}
 }
 
-// Dispose disposes all Dispose functions registered in this instance.
+// Dispose disposes all Dispose functions registered by this instance.
 func (md *MulticastDispose) Dispose() {
 	for i := len(md.list) - 1; i >= 0; i-- {
 		md.list[i]()
