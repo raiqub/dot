@@ -49,16 +49,28 @@ func (s StringSlice) Exists(str string, ignoreCase bool) bool {
 	return s.IndexOf(str, ignoreCase) != -1
 }
 
-//ExistsAll determine whether all specified strings exists into
+// ExistsAll determine whether all specified strings exists into
 // current slice.
 func (s StringSlice) ExistsAll(str []string, ignoreCase bool) bool {
 	for _, v := range str {
-		if !s.Exists(v, ignoreCase) {
+		if s.IndexOf(v, ignoreCase) == -1 {
 			return false
 		}
 	}
 
 	return true
+}
+
+// ExistsAny determine whether any of specified strings exists into current
+// slice
+func (s StringSlice) ExistsAny(str []string, ignoreCase bool) bool {
+	for _, v := range str {
+		if s.IndexOf(v, ignoreCase) != -1 {
+			return true
+		}
+	}
+
+	return false
 }
 
 // TrueForAll tests whether every element of current slice matches the
@@ -71,4 +83,16 @@ func (s StringSlice) TrueForAll(pred PredicateStringFunc) bool {
 	}
 
 	return true
+}
+
+// TrueForAny tests whether any element of current slice matches the conditions
+// specified by predicate.
+func (s StringSlice) TrueForAny(pred PredicateStringFunc) bool {
+	for _, v := range s {
+		if pred(v) {
+			return true
+		}
+	}
+
+	return false
 }

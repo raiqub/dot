@@ -28,8 +28,25 @@ const (
 var (
 	SampleTextArray = []string{
 		"Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing",
-		"elit.", "Sed", "tortor", "justo", "dui", "iaculis", "molestie.",
-		"Integer.",
+		"elit", "Sed", "tortor", "justo", "dui", "iaculis", "molestie",
+		"Integer",
+	}
+	SampleTextMissingArray = []string{
+		"Maecenas", "cursus", "enim", "venenatis", "venenatis", "nisi", "vitae",
+		"fermentum", "velit",
+	}
+	StopWords = []string{
+		"ab", "ac", "ad", "adhic", "aliqui", "aliquis", "an", "ante", "apud",
+		"at", "atque", "aut", "autem", "cum", "cur", "de", "deinde", "dum",
+		"ego", "enim", "ergo", "es", "est", "et", "etiam", "etsi", "ex", "fio",
+		"haud", "hic", "iam", "idem", "igitur", "ille", "in", "infra", "inter",
+		"interim", "ipse", "is", "ita", "magis", "modo", "mox", "nam", "ne",
+		"nec", "necque", "neque", "nisi", "non", "nos", "o", "ob", "per",
+		"possum", "post", "pro", "quae", "quam", "quare", "qui", "quia",
+		"quicumque", "quidem", "quilibet", "quis", "quisnam", "quisquam",
+		"quisque", "quisquis", "quo", "quoniam", "sed", "si", "sic", "sive",
+		"sub", "sui", "sum", "super", "suus", "tam", "tamen", "trans", "tu",
+		"tum", "ubi", "uel", "uero",
 	}
 )
 
@@ -93,6 +110,21 @@ func TestStringSliceExistsAll(t *testing.T) {
 	}
 }
 
+func TestStringSliceExistsAny(t *testing.T) {
+	sample := StringSlice(SampleTextArray)
+	testSample := make([]string, len(SampleTextMissingArray))
+	copy(testSample, SampleTextMissingArray)
+
+	if sample.ExistsAny(testSample, false) {
+		t.Error("None of elements of specified sample should exists")
+	}
+
+	testSample = append(testSample, SampleTextArray[5])
+	if !sample.ExistsAny(testSample, false) {
+		t.Errorf("The element '%s' should exists", SampleTextArray[5])
+	}
+}
+
 func TestStringSliceTrueForAll(t *testing.T) {
 	sample := StringSlice(SampleTextArray)
 
@@ -112,5 +144,18 @@ func TestStringSliceTrueForAll(t *testing.T) {
 		t.Error(
 			"None of elements of specified sample should have more than " +
 				"50 characters")
+	}
+}
+
+func TestStringSliceTrueForAny(t *testing.T) {
+	sample := StringSlice(SampleTextArray)
+	stopWords := StringSlice(StopWords)
+
+	hasStopWords := func(s string) bool {
+		return stopWords.Exists(s, true)
+	}
+
+	if !sample.TrueForAny(hasStopWords) {
+		t.Error("Should be found stop words on specified sample")
 	}
 }
