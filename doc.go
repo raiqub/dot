@@ -40,17 +40,6 @@ Disposable object (itself).
 Very useful as returning object of a function that allocates several Disposable
 objects.
 
-StringSlice
-
-A StringSlice is a named type of slice of strings and provides some useful
-methods as:
-
-	- IndexOf to determine index of specified string;
-	- Exists to determine whether specified string exists on slice;
-	- ExistsAll to determine whether all specified strings exists on slice;
-	- TrueForAll to test whether every element of slice matches the conditions
-	specified by the predicate function.
-
 Using
 
 A Using function allows to define a execution block for a Disposable object to

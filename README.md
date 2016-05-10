@@ -15,7 +15,6 @@ implementation of basic common tasks.
  * **Disposable** interface for objects that needs to release resources before dereferencing.
  * **LockStatus** type to control lock status of a lockable object.
  * **MulticastDispose** type to register multiple dispose functions as a single `Disposable` object.
- * **StringSlice** named type for slice of strings that offers some functions as: `IndexOf`, `Exists`, `ExistsAll` and `TrueForAll`.
  * **Using** function to define a execution block for `Disposable` objects.
  * Predefined errors for duplicated key, invalid key and not supported errors.
  * **WaitFunc** function to wait until a function returns true.
@@ -26,13 +25,13 @@ implementation of basic common tasks.
 To install raiqub/dot library run the following command:
 
 ~~~ bash
-go get gopkg.in/raiqub/dot.v1
+go get gopkg.in/raiqub/dot.v2
 ~~~
 
 To import this package, add the following line to your code:
 
 ~~~ bash
-import "gopkg.in/raiqub/dot.v1"
+import "gopkg.in/raiqub/dot.v2"
 ~~~
 
 ## Examples
